@@ -17,6 +17,6 @@ Route::get('/', function()
 });
 
 Route::get('initialseed', function(){
-	$seeder = (new Bluegallery\InitialSeeder)->seed();
-	return 'ok';
+    (new Bluegallery\OldDataImporter)->importOldCategories();
+    (new Bluegallery\OldDataImporter)->importOldProducts();
 });

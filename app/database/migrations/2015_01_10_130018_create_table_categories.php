@@ -21,7 +21,7 @@ class CreateTableCategories extends Migration {
 			$table->string('image')->nullable();
 			$table->string('slug')->nullable();
 			$table->string('brand')->nullable();
-			$table->string('family')->nullable();
+			$table->smallInteger('set_ID')->nullable();
 			$table->string('keywords')->nullable();
 			$table->timestamps();
 		});
