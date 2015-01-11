@@ -1,11 +1,10 @@
 <?php namespace Bluegallery;
 
-// import from old data to new data
-
-// first test
 /**
-*
+*   This is the seeding class for importing the database of the old version of the wesbite
+*   It is to be only used at the beginning when the database is still new and empty
 */
+
 class OldDataImporter
 {
     public function importOldCategories(){
@@ -23,7 +22,7 @@ class OldDataImporter
         return 'Import succesful';
     }
 
-    public function importOldProducts(){
+    public function importOldProducts(){ // import to categories table
         $allOldProducts = \Bluegallery\OldModels\Oldproduct::all();
         foreach ($allOldProducts as $key => $oldProduct) {
             $newItem = new \Bluegallery\Models\Category;
@@ -36,6 +35,21 @@ class OldDataImporter
         }
     }
 
+    public function importOldVariants(){ // import to products table
+        $allOldVariants = \Bluegallery\OldModels\Oldvariant::all();
+        foreach ($allOldVariants as $key => $OldVariant) {
+            $newItem = new \Bluegallery\Models\Product;
+            $newItem->id = $OldVariant->id;
+            $newItem->technicalDetails = $OldVariant->Variant_Name;
+            $newItem->category_ID = $OldVariant->Parent_Product_ID + 500;
+            $newItem->amountInStock = $OldVariant->Amount_In_Stock;
+            $newItem->sellingPrice = $OldVariant->Variant_Price;
+            $newItem->save();
+        }
+    }
 }
 
 ?>
+
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

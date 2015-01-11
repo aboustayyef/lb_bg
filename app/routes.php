@@ -1,22 +1,22 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
-
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('home');
 });
 
+Route::get('collection/{a?}/{b?}/{c?}/{d?}', function(){
+    $request = Request::path();
+    $target = new \Bluegallery\Navigation\UrlResolver($request);
+    var_dump($target->analyze());
+});
+
+
+
+// Seeding only
+
 Route::get('initialseed', function(){
-    (new Bluegallery\OldDataImporter)->importOldCategories();
-    (new Bluegallery\OldDataImporter)->importOldProducts();
+    // (new Bluegallery\OldDataImporter)->importOldCategories();
+    // (new Bluegallery\OldDataImporter)->importOldProducts();
+    (new Bluegallery\OldDataImporter)->importOldVariants();
 });

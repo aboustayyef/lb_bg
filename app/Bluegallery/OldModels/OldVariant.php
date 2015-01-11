@@ -6,5 +6,4 @@ class Oldvariant extends \Eloquent
     protected $table = '_oldvariants';
     public $timestamps = false;
 }
-
 ?>

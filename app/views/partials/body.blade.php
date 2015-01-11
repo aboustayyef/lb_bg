@@ -1,0 +1,2 @@
+<!-- // stuff here -->
+@yield('content')
