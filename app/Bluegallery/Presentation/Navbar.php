@@ -3,6 +3,7 @@
 use \Bluegallery\Models\Category;
 use \Bluegallery\Models\Product;
 use \Bluegallery\Helpers;
+use \Cache;
 
 /**
 * renders Navigation bar
