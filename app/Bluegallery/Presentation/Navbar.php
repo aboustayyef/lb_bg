@@ -17,11 +17,11 @@ class Navbar
 		$navbar = '<ul>';
 		$toplevel = (new Category)->topLevel();
 		foreach ($toplevel as $key => $section) {
-			$navbar .= '<li>'.$section->name.'</li>';
+			$navbar .= '<li><a href="'.$section->link().'">'.$section->name.'</a></li>';
 			$subsections = $section->children();
 			$navbar .= '<ul>';
 				foreach ($subsections as $key => $subsection) {
-					$navbar .= '<li>' . $subsection->name . '</li>';
+					$navbar .= '<li><a href="'.$subsection->link().'">' . $subsection->name . '</a></li>';
 				}
 			$navbar .= '</ul>';
 		}

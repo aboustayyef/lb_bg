@@ -24,9 +24,13 @@ class Category extends \Eloquent{
         $exists = $this->where('parent_Id', $this->id)->get();
         if ($exists->count() == 0) {
             return false;
-        } 
+        }
         return $exists;
         // categories only for now. Add products later
+    }
+
+    public function link(){
+        return getenv('WEBPATH') . (new \Bluegallery\Navigation\UrlMaker('category',$this->id))->build();
     }
 }
 
