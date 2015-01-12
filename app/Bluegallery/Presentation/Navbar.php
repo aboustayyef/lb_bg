@@ -10,6 +10,9 @@ use \Bluegallery\Helpers;
 class Navbar
 {
 	public function build(){
+		if (Cache::has('navbar')) {
+			return Cache::get('navbar');
+		}
 		$navbar = '<ul>';
 		$toplevel = (new Category)->topLevel();
 		foreach ($toplevel as $key => $section) {
@@ -22,7 +25,8 @@ class Navbar
 			$navbar .= '</ul>';
 		}
 		$navbar .= '</ul>';
-		return $navbar;
+		Cache::put('navbar', $navbar, 60 * 24 * 3);
+		return Cache::get('navbar');
 	}
 }
 
