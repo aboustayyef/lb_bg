@@ -11,7 +11,9 @@ Route::get('collection/{a?}/{b?}/{c?}/{d?}', function(){
     var_dump($target->analyze());
 });
 
-
+Route::get('/test',function(){
+	return (new \Bluegallery\Presentation\Navbar)->build();
+});
 
 // Seeding only
 
